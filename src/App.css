@@ -73,3 +73,12 @@
     font-size: 17px;
     justify-content: center;
 }
+
+.canvas-body .fa {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 50px;
+    color: teal;
+    display: none;
+}
