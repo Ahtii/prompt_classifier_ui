@@ -11,17 +11,22 @@ const Message = () => {
     setShow(inputValue === '' && messagesElement.innerHTML === '');
   };
 
-  const getParagraphChild = (text) => {
+  const getParagraphChild = (text, label) => {
+    console.log(label);
     var paragraphElement = document.createElement("p");
+    var boldElement = document.createElement("b");
+    boldElement.appendChild(document.createTextNode(label + " "));
+    paragraphElement.appendChild(boldElement)
     paragraphElement.appendChild(document.createTextNode(text))
     return paragraphElement
   }
 
    const handleSubmit = (event) => {
    const prompt = document.querySelector('input').value;
+   document.querySelector('input').value = '';
 
     var messages = document.querySelector('.messages');
-    messages.appendChild(getParagraphChild(prompt))
+    messages.appendChild(getParagraphChild(prompt, "You"))
 
     document.querySelector('.canvas-body .fa').style.display = "block";
 
@@ -36,13 +41,13 @@ const Message = () => {
     .then(response => response.json())
     .then(data => {
        document.querySelector('.canvas-body .fa').style.display = "none";
-       messages.appendChild(getParagraphChild(data['category']))
+       messages.appendChild(getParagraphChild(data['category'], "AI"))
     });
     };
 
     return (
         <div className="chat-history">
-        <p className="canvas-title"> Customer Chat </p>
+        <p className="canvas-title"> Prompt Classifier </p>
         <div className="canvas-body">
           <i className="fa fa-spinner fa-spin"></i>
           <div className="canvas-text">
@@ -54,7 +59,8 @@ const Message = () => {
                 Enter your question or concern here, and let me assist you by categorizing it for a faster resolution.
               </p>
             </div>
-            <div className="messages"></div>
+            <div className="messages">
+            </div>
           </div>
           <div className="canvas-action">
             <input placeholder="Enter your prompt here" onChange={handleInputChange}></input>
