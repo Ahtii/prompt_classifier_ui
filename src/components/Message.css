@@ -21,8 +21,9 @@
 }
 
 .canvas-text {
-    height: 80%;
+    height: 75%;
     padding: 50px;
+    overflow-y: auto;
 }
 
 .canvas-action {
